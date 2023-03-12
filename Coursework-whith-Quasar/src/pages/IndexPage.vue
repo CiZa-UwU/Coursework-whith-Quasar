@@ -1,6 +1,6 @@
 <template>
   <q-page class="flex flex-center">
-    Game 1
+    Games
   </q-page>
 </template>
 
