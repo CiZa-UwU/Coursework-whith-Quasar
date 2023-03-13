@@ -1,5 +1,5 @@
 <template>
-   <q-header elevated class="q-pa-md q-mb-xl">
+   <q-header elevated class="q-pa-sm q-mb-xl">
     <q-toolbar class = "justify-start">
       <q-toolbar-title>
         <q-btn
@@ -11,7 +11,7 @@
           @click="toggleLeftDrawer"
         />
         <router-link to="/">
-            <q-avatar class="round-5 shadow-2 q-mx-lg q-pa-xl text-center bg-white">
+            <q-avatar class="round-5 shadow-2 q-mx-xs q-pa-lg text-center bg-white">
             </q-avatar>
         </router-link>
       </q-toolbar-title>
