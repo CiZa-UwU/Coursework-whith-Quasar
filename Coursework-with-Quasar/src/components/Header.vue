@@ -16,16 +16,18 @@
         </router-link>
       </q-toolbar-title>
 
-        <router-link to="/About" class="link">
+        <router-link to="/about" class="link">
             <q-btn class="bg-white q-mx-xl"
             label="Что такое пространственное мышление?"
             text-color="black"/>
         </router-link>
 
-        <q-btn class="bg-white"
-        label="Авторизация"
-        text-color="black"
-        />
+        <router-link to="/authorization" class="link">
+          <q-btn class="bg-white"
+          label="Авторизация"
+          text-color="black"
+          />
+        </router-link>
     </q-toolbar>
     
   </q-header>
