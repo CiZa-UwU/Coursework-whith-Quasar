@@ -12,7 +12,7 @@
             <q-icon color="primary" name="keyboard_arrow_right" />
           </q-item-section>
           <q-item-section>
-            <router-link to="games" class="link" style="text-decoration: none; color: black;">
+            <router-link to="games" class="link">
                 <q-item-label>Соедини половинки</q-item-label>
                 <q-item-label caption>Перейти</q-item-label>
             </router-link>

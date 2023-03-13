@@ -21,6 +21,8 @@ export default defineComponent({
 })
 </script>
 
-<style scoped>
-
+<style>
+.link{
+  text-decoration: none; color: black;
+}
 </style>
