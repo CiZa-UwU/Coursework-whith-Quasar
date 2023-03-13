@@ -1,5 +1,5 @@
 <template>
-   <q-header elevated class="q-pa-md">
+   <q-header elevated class="q-pa-md q-mb-xl">
     <q-toolbar class = "justify-start">
       <q-toolbar-title>
         <q-btn
