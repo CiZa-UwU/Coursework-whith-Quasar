@@ -19,7 +19,8 @@
     "vuex": "^4.0.1"
   },
   "devDependencies": {
-    "@quasar/app-webpack": "^3.0.0"
+    "@quasar/app-webpack": "^3.0.0",
+    "vue-cli-plugin-apollo": "~0.22.2"
   },
   "browserslist": [
     "last 10 Chrome versions",
