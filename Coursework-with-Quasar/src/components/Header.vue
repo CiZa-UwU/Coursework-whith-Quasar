@@ -25,7 +25,6 @@
         <router-link to="/authorization" class="link">
           <q-btn class="btn"
           label="Авторизация"
-          text-color="black"
           />
         </router-link>
     </q-toolbar>
