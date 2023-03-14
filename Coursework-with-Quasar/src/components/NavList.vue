@@ -34,4 +34,16 @@ export default defineComponent({
 })
 </script>
 <style>
+::-webkit-scrollbar{
+  width: 5px;
+}
+
+::-webkit-scrollbar-track{
+  background-color: black;
+}
+
+::-webkit-scrollbar-thumb{
+  background-color: #000000;
+  border-radius: 8px;
+}
 </style>
