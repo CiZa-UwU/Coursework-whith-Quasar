@@ -76,9 +76,4 @@ export default defineComponent({
   box-shadow: 0 0 10px 0 #4abcdb inset, 0 0 10px 4px #43b4d3 ;
   margin-left: 30px;
 }
-
-/* .avatar{
-  height: 60px;
-  width: 70px;
-} */
 </style>
