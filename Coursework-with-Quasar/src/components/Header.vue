@@ -1,5 +1,5 @@
 <template>
-   <q-header elevated class="q-pa-sm q-mb-xl">
+   <q-header elevated class="header q-pa-sm q-mb-xl">
     <q-toolbar class = "justify-start">
       <q-toolbar-title>
         <q-btn
@@ -29,7 +29,7 @@
           />
         </router-link>
     </q-toolbar>
-    
+
   </q-header>
 
   <q-drawer
@@ -37,7 +37,7 @@
     show-if-above
     bordered>
     <NavList/>
-  </q-drawer> 
+  </q-drawer>
 </template>
 
 <script>
@@ -60,5 +60,8 @@ export default defineComponent({
 </script>
 
 <style scoped>
-
+.header{
+  background: url(https://media.discordapp.net/attachments/1084917962487631913/1084921948024356965/sfsfadfadf_background_full_of_puzzles_and_games_ddbcdcf2-4472-4e91-881f-6cb5c7b09065.png?width=738&height=422);
+  height: 75px;
+}
 </style>
