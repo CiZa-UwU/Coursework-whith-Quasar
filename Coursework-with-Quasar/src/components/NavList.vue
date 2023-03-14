@@ -3,10 +3,10 @@
       <q-item-label header>
         <h5 class="justify-center">Игры:</h5>
       </q-item-label>
-      
+
       <q-card class="my-card q-pa-md q-ma-md">
-      <img src="../assets/7-qhqmkQQiA.jpg">
-      <q-list>
+      <img src="https://media.discordapp.net/attachments/1084917962487631913/1085265393574236200/the_apple_divided_into_two_parts_one_part_of_the_ap_f213ffcc-4c26-422d-b5b1-7ec2161f36a8.png?width=738&height=422">
+      <q-list class="list_background">
         <q-item clickable>
           <q-item-section avatar>
             <q-icon color="primary" name="keyboard_arrow_right" />
@@ -29,7 +29,9 @@ import { defineComponent } from 'vue'
 export default defineComponent({
     name: 'NavList',
     setup() {
-        
+
     },
 })
 </script>
+<style>
+</style>
