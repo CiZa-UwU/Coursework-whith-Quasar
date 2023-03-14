@@ -23,7 +23,7 @@
         </router-link>
 
         <router-link to="/authorization" class="link">
-          <q-btn class="bg-white"
+          <q-btn class="btn"
           label="Авторизация"
           text-color="black"
           />
