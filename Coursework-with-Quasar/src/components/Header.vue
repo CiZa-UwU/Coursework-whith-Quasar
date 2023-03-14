@@ -22,9 +22,16 @@
             text-color="black"/>
         </router-link>
 
-        <router-link to="/authorization" class="link">
+        <router-link to="/enter" class="link q-mx-sm">
           <q-btn class="bg-white"
-          label="Авторизация"
+          label="Войти"
+          text-color="black"
+          />
+        </router-link>
+
+        <router-link to="/register" class="link">
+          <q-btn class="bg-white"
+          label="Зарегестрироваться"
           text-color="black"
           />
         </router-link>
