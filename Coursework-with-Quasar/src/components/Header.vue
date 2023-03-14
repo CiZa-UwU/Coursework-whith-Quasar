@@ -11,21 +11,20 @@
           @click="toggleLeftDrawer"
         />
         <router-link to="/">
-            <q-avatar class="round-5 shadow-2 q-mx-xs q-pa-lg text-center bg-white">
-            </q-avatar>
+            <!-- <q-avatar class="avatar round-5 shadow-2 text-center">
+              <img src="../assets/logo.jpg">
+            </q-avatar> -->
         </router-link>
       </q-toolbar-title>
 
         <router-link to="/about" class="link">
-            <q-btn class="bg-white q-mx-xl"
-            label="Что такое пространственное мышление?"
-            text-color="black"/>
+            <q-btn class="btn"
+            label="Что такое пространственное мышление?"/>
         </router-link>
 
         <router-link to="/authorization" class="link">
-          <q-btn class="bg-white"
+          <q-btn class="btn"
           label="Авторизация"
-          text-color="black"
           />
         </router-link>
     </q-toolbar>
@@ -61,7 +60,25 @@ export default defineComponent({
 
 <style scoped>
 .header{
-  background: url(https://media.discordapp.net/attachments/1084917962487631913/1084921948024356965/sfsfadfadf_background_full_of_puzzles_and_games_ddbcdcf2-4472-4e91-881f-6cb5c7b09065.png?width=738&height=422);
+  background-color: black;
   height: 75px;
 }
+.btn{
+  background-color:#282d338e;
+  border: 1px;
+  cursor: pointer;
+  font-size: 10px;
+  line-height: 1;
+  padding: 1.2em 2.8em;
+  text-align: center;
+  font-weight: 700;
+  color: white;
+  box-shadow: 0 0 10px 0 #4abcdb inset, 0 0 10px 4px #43b4d3 ;
+  margin-left: 30px;
+}
+
+/* .avatar{
+  height: 60px;
+  width: 70px;
+} */
 </style>
