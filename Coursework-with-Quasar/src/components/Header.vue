@@ -22,9 +22,15 @@
             label="Что такое пространственное мышление?"/>
         </router-link>
 
-        <router-link to="/authorization" class="link">
+        <router-link to="/enter" class="link q-mx-sm">
           <q-btn class="btn"
-          label="Авторизация"
+          label="Войти"
+          />
+        </router-link>
+
+        <router-link to="/register" class="link">
+          <q-btn class="btn"
+          label="Зарегестрироваться"
           />
         </router-link>
     </q-toolbar>
