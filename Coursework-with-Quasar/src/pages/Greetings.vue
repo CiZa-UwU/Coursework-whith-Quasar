@@ -11,8 +11,6 @@
 
   <script>
   import { defineComponent } from 'vue'
-  import { useQuery } from '@vue/apollo-composable'
-  import gql from 'graphql-tag'
 
   export default defineComponent({
     name: 'Greetings',

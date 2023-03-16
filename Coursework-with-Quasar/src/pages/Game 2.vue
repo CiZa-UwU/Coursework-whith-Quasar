@@ -4,7 +4,7 @@
     <div>
       <div class="q-pt-xl q-mx-xl justify-center text-center">
         <q-icon color="blue" name="chevron_left" size="50px"/>
-        <h5 class="shadow-2 q-pa-md" style="display: inline; border-radius: 30px; color:white;">Уровень 1</h5>
+        <h5 class="shadow-2 q-pa-md" style="display: inline; border-radius: 30px;">Уровень 1</h5>
         <q-icon color="blue" name="chevron_right" size="50px"/>
       </div>
     </div>
@@ -42,9 +42,6 @@ export default {
 </script>
 
 <style>
-.game2{
-  background-color: black;
-}
 
 .game211{
   width: 500px;
