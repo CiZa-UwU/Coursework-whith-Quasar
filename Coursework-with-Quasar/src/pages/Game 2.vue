@@ -15,13 +15,13 @@
     </div>
     <div class="q-pt-xl justify-center row">
       <div>
-        <img class="game21" src="../assets/game2_1.2.jpg" alt="">
+        <img @click="wrong" class="game21" src="../assets/game2_1.2.jpg" alt="">
       </div>
       <div>
-        <img class="game21" src="../assets/game2_1.3.jpg" alt="">
+        <img @click="wrong" class="game21" src="../assets/game2_1.3.jpg" alt="">
       </div>
       <div>
-        <img class="game21" src="../assets/game2_1.4.jpg" alt="">
+        <img @click="correct" class="game21" src="../assets/game2_1.4.jpg" alt="">
       </div>
     </div>
   </q-page>
@@ -29,6 +29,16 @@
 </template>
 
 <script>
+export default {
+  methods:{
+    wrong(){
+      alert("Ты серьёзно? Попробуй ещё раз ")
+    },
+    correct(){
+      alert("Так держать! Ты становишься умнее")
+    }
+  }
+}
 </script>
 
 <style>
@@ -48,6 +58,10 @@
   display: inline;
   margin-right:10px;
   margin-bottom: 30px;
+}
+
+.game21:hover{
+  transform: scale(1.05);
 }
 
 </style>
