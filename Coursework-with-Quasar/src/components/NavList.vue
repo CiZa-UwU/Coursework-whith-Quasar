@@ -38,6 +38,23 @@
       </q-list>
     </q-card>
 
+    <q-card class="my-card q-pa-md q-ma-md">
+      <img src="https://media.discordapp.net/attachments/1084917962487631913/1084921429163769856/sfsfadfadf_background_for_header_in_site_puzzles_games_and_brai_72671b22-88ce-4dc8-a89b-e7247e292af7.png?width=738&height=422">
+      <q-list class="list_background">
+        <q-item clickable>
+          <q-item-section avatar>
+            <q-icon color="primary" name="keyboard_arrow_right" />
+          </q-item-section>
+          <q-item-section>
+            <router-link to="game-3" class="link">
+                <q-item-label>Игра на запоминание</q-item-label>
+                <q-item-label caption>Перейти</q-item-label>
+            </router-link>
+          </q-item-section>
+        </q-item>
+      </q-list>
+    </q-card>
+
     </q-list>
 </template>
 <script>
