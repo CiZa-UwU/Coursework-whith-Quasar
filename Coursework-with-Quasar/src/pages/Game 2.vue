@@ -91,7 +91,7 @@ export default defineComponent({
 }
 
 #color{
-  /* не удалять */
+  color:black;
 }
 
 </style>
