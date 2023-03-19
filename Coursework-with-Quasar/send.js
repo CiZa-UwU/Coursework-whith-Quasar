@@ -11,15 +11,15 @@ amqp.connect('amqp://localhost', function (error0, connection) {
       throw error1;
     }
 
-    const queue = 'hello';
-    const msg = 'Hello World!';
+    const queue = 'Пользователь';
+    const msg = 'Как дела?';
 
     channel.assertQueue(queue, {
       durable: false
     });
     channel.sendToQueue(queue, Buffer.from(msg));
 
-    console.log(" [x] Sent %s", msg);
+    console.log(" [x] Отправленно %s", msg);
   });
   setTimeout(function () {
     connection.close();

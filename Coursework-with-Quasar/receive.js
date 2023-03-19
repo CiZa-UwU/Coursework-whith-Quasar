@@ -11,16 +11,16 @@ amqp.connect('amqp://localhost', function (error0, connection) {
       throw error1;
     }
 
-    const queue = 'hello';
+    const queue = 'Пользователь';
 
     channel.assertQueue(queue, {
       durable: false
     });
 
-    console.log(" [*] Waiting for messages in %s. To exit press CTRL+C", queue);
+    console.log(" [*] Ждём сообщений от %s.", queue);
 
     channel.consume(queue, function (msg) {
-      console.log(" [x] Received %s", msg.content.toString());
+      console.log(" [x] Полученно сообщения: %s", msg.content.toString());
     }, {
       noAck: true
     });
