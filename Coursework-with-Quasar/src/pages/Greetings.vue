@@ -4,7 +4,7 @@
         <p>Proкачай свой мозг с нами.</p>
       </div>
       <div class="brain">
-        <img class="brain_img" src="https://i.gifer.com/origin/86/867536d1390d47a35f0c0e29ed9aef0f.gif" alt="">
+        <img class="brain_img" src="https://kartinkin.net/uploads/posts/2021-07/1625834129_14-kartinkin-com-p-mozgi-oboi-krasivie-14.jpg" alt="">
       </div>>
     </q-page>
   </template>
@@ -33,6 +33,7 @@
     font-family: 'Roboto';
     font-weight: 400;
     max-width: 300px;
+    min-width: 300px;
     text-shadow:10px 15px 15px #53daff;
     margin-left: 250px;
   }
