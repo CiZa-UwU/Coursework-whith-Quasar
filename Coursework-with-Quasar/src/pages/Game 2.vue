@@ -13,7 +13,7 @@
       <h5 class="shadow-2 q-pa-md level-bar">
         Уровень {{ cur_level }}
       </h5>
-      <q-icon v-if="cur_level!==2" 
+      <q-icon v-if="cur_level!==4" 
         @click ="cur_level++;
                 refetch();
                 res=[];
