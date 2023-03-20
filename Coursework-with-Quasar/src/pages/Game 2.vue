@@ -32,8 +32,8 @@
         class="q-pa-md card"
         :key="result.game_content[index].id" 
         :class="{'answer' : item.is_answer}" 
-        :src="require('../assets/game2/'+item.image)">
-        <!-- Дописать проверку -->
+        :src="require('../assets/game2/'+item.image)"
+        @click.self="Check($event)">
     </div>
   </q-page>
 </template>
@@ -70,6 +70,14 @@ export default defineComponent({
       levelDone,
 
       //Methods
+      Check(evn){
+        if(evn.target.classList[2] == 'answer'){
+          alert("Правильный ответ!")
+        }
+        else{
+          alert("Неправильный ответ")
+        }
+      }
     }
   }
 })
