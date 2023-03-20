@@ -23,15 +23,15 @@
         </router-link>
 
         <router-link to="/enter" class="link q-mx-sm">
-          <q-btn class="btn"
-          label="Войти"
-          />
+          <q-item id="auth-links">
+          <q-btn @click="userApi.login"> Войти </q-btn>
+        </q-item>
         </router-link>
 
         <router-link to="/register" class="link">
-          <q-btn class="btn"
-          label="Зарегестрироваться"
-          />
+        <div class="q-ml-md">
+          <div id="user-button"></div>
+        </div>
         </router-link>
     </q-toolbar>
 
@@ -48,6 +48,7 @@
 <script>
 import { defineComponent,ref } from 'vue'
 import NavList from './NavList.vue'
+import userApi from "../sdk/user"
 
 export default defineComponent({
     name: 'Header',
@@ -58,7 +59,8 @@ export default defineComponent({
         leftDrawerOpen,
         toggleLeftDrawer () {
           leftDrawerOpen.value = !leftDrawerOpen.value
-        }
+        },
+        userApi
     }
     },
 })
