@@ -17,16 +17,17 @@
     "core-js": "^3.6.5",
     "firebase": "^9.17.2",
     "graphql": "^15.8.0",
-    "quasar": "^2.6.0",
+    "quasar": "^2.11.7",
     "vue": "^3.0.0",
     "vue-apollo": "^3.1.0",
     "vue-router": "^4.0.0",
+    "vuedraggable": "^4.1.0",
     "vuex": "^4.0.1"
   },
   "devDependencies": {
     "@quasar/app-webpack": "^3.0.0",
     "@quasar/quasar-app-extension-apollo": "^2.0.0-beta.5",
-    "vue-cli-plugin-apollo": "^0.20.0"
+    "vue-cli-plugin-apollo": "^0.13.7"
   },
   "browserslist": [
     "last 10 Chrome versions",
