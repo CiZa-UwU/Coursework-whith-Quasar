@@ -23,7 +23,7 @@
         </router-link>
 
         <router-link to="/enter" class="link q-mx-sm">
-          <q-btn class="btn"
+          <q-btn class="btn" id="auth-links"
           label="Войти"
           />
         </router-link>

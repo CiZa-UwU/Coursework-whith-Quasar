@@ -9,6 +9,7 @@
     "test": "echo \"No test specified\" && exit 0"
   },
   "dependencies": {
+    "@clerk/clerk-js": "^4.32.6",
     "@quasar/extras": "^1.0.0",
     "@vue/apollo-composable": "^4.0.0-beta.4",
     "apollo-boost": "^0.4.9",
