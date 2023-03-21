@@ -51,6 +51,10 @@
               1_000
             );
           }
+          else{
+            sessionStorage.setItem(
+              "token","")
+          }
         } catch (err) {
           console.error("Error starting Clerk: ", err);
         }
