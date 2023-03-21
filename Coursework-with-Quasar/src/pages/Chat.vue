@@ -64,8 +64,6 @@ export default {
   display: flex;
   justify-content: center;
   padding-top: 150px;
-  width: 100vw;
-  height: 100vh;
 }
 
 .name-container {
