@@ -62,7 +62,6 @@ export default {
     width: 50px;
     height: 50px;
     background: #ccc;
-    float: left;
     margin: 5px;
     cursor: pointer;
     display: inline-block;

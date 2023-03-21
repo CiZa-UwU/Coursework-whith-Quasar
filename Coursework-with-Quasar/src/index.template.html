@@ -18,5 +18,60 @@
   <body>
     <!-- DO NOT touch the following DIV -->
     <div id="q-app"></div>
+    <script>
+      const publishableKey =
+        "pk_test_cHJvbXB0LXBvb2RsZS04OS5jbGVyay5hY2NvdW50cy5kZXYk"; // <- Add Publishable Key here
+
+      const startClerk = async () => {
+        const Clerk = window.Clerk;
+
+        try {
+          // Load Clerk environment and session if available
+          await Clerk.load();
+          await Clerk.addListener(({ user }) => {
+            // Display links conditionally based on user state
+            const authLinks = document.getElementById("auth-links");
+            const exitBtn = document.getElementById('exit-btn')
+            authLinks.style.display = user ? "none" : "block";
+            exitBtn.style.display = user ? "block" : "none"
+          });
+
+          if (Clerk.user) {
+            sessionStorage.setItem(
+              "token",
+              await Clerk.session?.getToken({ template: "hasura" })
+            );
+
+            setInterval(
+              async () =>
+                sessionStorage.setItem(
+                  "token",
+                  await Clerk.session?.getToken({ template: "hasura" })
+                ),
+              1_000
+            );
+          }
+          else{
+            sessionStorage.setItem(
+              "token","")
+          }
+        } catch (err) {
+          console.error("Error starting Clerk: ", err);
+        }
+      };
+
+      (() => {
+        const script = document.createElement("script");
+        script.setAttribute("data-clerk-publishable-key", publishableKey);
+        script.async = true;
+        script.src = `https://cdn.jsdelivr.net/npm/@clerk/clerk-js@latest/dist/clerk.browser.js`;
+        script.crossOrigin = "anonymous";
+        script.addEventListener("load", startClerk);
+        script.addEventListener("error", () => {
+          document.getElementById("no-frontend-api-warning").hidden = false;
+        });
+        document.body.appendChild(script);
+      })();
+    </script>
   </body>
 </html>

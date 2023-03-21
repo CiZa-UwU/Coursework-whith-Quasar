@@ -64,7 +64,7 @@
 
 <script>
 import { defineComponent,ref } from 'vue'
-import { useQuery} from '@vue/apollo-composable'
+import { useQuery, useMutation} from '@vue/apollo-composable'
 import draggable from "vuedraggable";
 import gql from 'graphql-tag'
 
