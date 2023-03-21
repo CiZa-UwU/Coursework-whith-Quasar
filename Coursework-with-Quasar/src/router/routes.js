@@ -11,6 +11,7 @@ const routes = [
       { path: '/about', component: () => import('pages/About.vue') },
       { path: '/enter', component: () => import('pages/Enter.vue') },
       { path: '/register', component: () => import('pages/Register.vue') },
+      { path: '/chat', component: () => import('pages/Chat.vue') },
     ]
   },
 
