@@ -22,17 +22,18 @@
             label="Что такое пространственное мышление?"/>
         </router-link>
 
-        <router-link to="/enter" class="link q-mx-sm">
-          <q-btn class="btn" id="auth-links"
+          <q-btn class="btn" 
+          id="auth-links"
+          @click="userApi.login"
           label="Войти"
           />
-        </router-link>
 
-        <router-link to="/register" class="link">
-          <q-btn class="btn"
-          label="Зарегестрироваться"
+        <q-btn class="btn"
+          id="exit-btn"
+          @click="userApi.logout" 
+          label="Выйти"
           />
-        </router-link>
+
     </q-toolbar>
 
   </q-header>
@@ -47,8 +48,9 @@
 
 <script>
 import { defineComponent,ref } from 'vue'
+import userApi from "../sdk/user_api";
 import NavList from './NavList.vue'
-
+console.log(window.Clerk.user);
 export default defineComponent({
     name: 'Header',
     components: {NavList},
@@ -56,6 +58,7 @@ export default defineComponent({
       const leftDrawerOpen = ref(false)
       return {
         leftDrawerOpen,
+        userApi,
         toggleLeftDrawer () {
           leftDrawerOpen.value = !leftDrawerOpen.value
         }

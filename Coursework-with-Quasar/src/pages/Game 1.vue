@@ -64,7 +64,7 @@
 
 <script>
 import { defineComponent,ref } from 'vue'
-import { useQuery} from '@vue/apollo-composable'
+import { useQuery, useMutation} from '@vue/apollo-composable'
 import draggable from "vuedraggable";
 import gql from 'graphql-tag'
 
@@ -86,6 +86,17 @@ export default defineComponent({
       }
     }
     `,{"levels":cur_level})
+    const { result2, error2, loading2, refetch2} = useMutation(gql`mutation MyMutation {
+  insert_done_levels(objects: {level_1_game_1: false, level_1_game_2: false, level_2_game_1: false, level_2_game_2: false, level_3_game_2: false, level_4_game_2: false}) {
+    returning {
+      user_id
+    }
+  }
+}
+`)
+    console.log(result2);
+    console.log(error2);
+    console.log(window.Clerk.user);
     return{
       cur_level,
       result,
