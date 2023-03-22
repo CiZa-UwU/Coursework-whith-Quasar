@@ -28,32 +28,25 @@
         try {
           // Load Clerk environment and session if available
           await Clerk.load();
-          await Clerk.addListener(({ user }) => {
-            // Display links conditionally based on user state
-            const authLinks = document.getElementById("auth-links");
-            const exitBtn = document.getElementById('exit-btn')
-            authLinks.style.display = user ? "none" : "block";
-            exitBtn.style.display = user ? "block" : "none"
-          });
-
           if (Clerk.user) {
             sessionStorage.setItem(
               "token",
               await Clerk.session?.getToken({ template: "hasura" })
             );
-
+            console.log("Добавлен токен");
             setInterval(
               async () =>
                 sessionStorage.setItem(
                   "token",
                   await Clerk.session?.getToken({ template: "hasura" })
                 ),
-              1_000
+              60000
             );
           }
           else{
             sessionStorage.setItem(
               "token","")
+            console.log("Нет токена");
           }
         } catch (err) {
           console.error("Error starting Clerk: ", err);

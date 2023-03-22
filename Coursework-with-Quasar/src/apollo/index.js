@@ -5,10 +5,10 @@ export /* async */ function getClientOptions(/* {app, router, ...} */ options) {
   const httpLink = createHttpLink({
     uri: "https://endless-wasp-39.hasura.app/v1/graphql",
   });
-
   const authLink = setContext((_, { headers }) => {
     const token = sessionStorage.getItem("token");
     if(token === ""){
+      console.log("Отправлены пустые заголовки");
       return {
         headers: {
           ...headers
@@ -16,6 +16,7 @@ export /* async */ function getClientOptions(/* {app, router, ...} */ options) {
       }
     }
     else {
+      console.log("Отправлены заголовки");
       return {
         headers: {
           ...headers,

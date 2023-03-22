@@ -76,7 +76,14 @@ export default defineComponent({
     const cur_level = ref(1)
     const levelDone = ref(0)
     const res = ref([])
-    const { result, error, loading, refetch } = useQuery(gql`query my($levels: Int!) {
+    const ABC = useQuery(gql`query my2($level_1_game_1: Boolean!) {
+       done_levels(where: {level_1_game_1: {_eq:$level_1_game_1}}) {
+         user_id
+         level_1_game_1
+       }
+     }
+     `,{"level_1_game_1":false})
+     const {result,loading,error,refetch} = useQuery(gql`query my($levels: Int!) {
       game_content(where: {levels: {_eq:$levels}}) {
         game_name
         id
@@ -86,6 +93,22 @@ export default defineComponent({
       }
     }
     `,{"levels":cur_level})
+
+    // const {mutate} = useMutation(gql`mutation MyMutation {
+    // insert_done_levels(objects: 
+    // {  
+    //  level_1_game_1: false,
+    //  level_1_game_2: false,
+    //  level_2_game_1: false,
+    //  level_2_game_2: false,
+    //  level_3_game_2: false,
+    //  level_4_game_2: false}) 
+    //  {
+    //   affected_rows  
+    //  }
+    // }`)
+    console.log(ABC.result);
+    // mutate()
     return{
       cur_level,
       result,
@@ -94,7 +117,6 @@ export default defineComponent({
       refetch,
       res,
       levelDone,
-
       //Methods
       Check(env){
         if(env.item.__draggable_context.element.is_answer && res.value.length == 1){

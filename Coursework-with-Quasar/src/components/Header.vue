@@ -11,13 +11,10 @@
       </q-toolbar-title>
 
       <router-link to="/chat" class="link">
-        <button class="btn">Чат</button>
+        <q-btn class="btn" v-if="isLogin()">Чат</q-btn>
       </router-link>
-
-      <q-btn class="btn" id="auth-links" @click="userApi.login" label="Войти" />
-
-      <q-btn class="btn" id="exit-btn" @click="userApi.logout" label="Выйти" />
-
+      <q-btn v-if="isLogin()" class="btn" id="exit-btn" @click="userApi.logout" label="Выйти" />
+      <q-btn v-else class="btn" id="auth-links" @click="userApi.login" label="Войти" />
     </q-toolbar>
 
   </q-header>
@@ -31,7 +28,6 @@
 import { defineComponent, ref } from 'vue'
 import userApi from "../sdk/user_api";
 import NavList from './NavList.vue'
-console.log(window.Clerk.user);
 export default defineComponent({
   name: 'Header',
   components: { NavList },
@@ -42,6 +38,14 @@ export default defineComponent({
       userApi,
       toggleLeftDrawer() {
         leftDrawerOpen.value = !leftDrawerOpen.value
+      },
+      isLogin(){
+        if(window.Clerk.user !== 'null' && typeof window.Clerk.user !== 'undefined'){
+          return true
+          
+        }
+        else
+          return false
       }
     }
   },

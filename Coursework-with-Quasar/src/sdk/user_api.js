@@ -4,6 +4,7 @@ const login = async ({ email, password }) => {
 
 const logout = async () => {
   await window.Clerk.signOut();
+  window.location.reload()
 };
 
 
