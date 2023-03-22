@@ -1,7 +1,7 @@
 <template>
   <q-layout view="lHh Lpr lFf">
     <Header/>
-    <q-page-container>
+    <q-page-container class="hi">
       <router-view />
     </q-page-container>
   </q-layout>
@@ -24,5 +24,11 @@ export default defineComponent({
 <style>
 .link{
   text-decoration: none; color: black;
+}
+
+.hi {
+  background: url('../assets/Фон1.jpg');
+  background-size: cover;
+  background-position: center;
 }
 </style>

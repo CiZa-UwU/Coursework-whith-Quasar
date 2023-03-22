@@ -1,7 +1,7 @@
 <template>
     <q-list>
-      <q-item-label header>
-        <h5 class="justify-center">Игры:</h5>
+      <q-item-label class="list_header" header>
+        <q-img src="../assets/game-logo.png" class="center"></q-img>
       </q-item-label>
 
     <q-card class="my-card q-pa-md q-ma-md">
@@ -112,5 +112,16 @@ export default defineComponent({
 ::-webkit-scrollbar-thumb{
   background-color: #000000;
   border-radius: 8px;
+}
+
+.q-drawer__content {
+  background: url(../assets/fon-for-list.png);
+  background-size: cover;
+  background-position: center;
+}
+
+.list_header {
+  background: #079270;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 </style>

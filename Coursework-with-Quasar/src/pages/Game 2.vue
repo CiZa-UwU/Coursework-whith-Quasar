@@ -1,6 +1,8 @@
 <template>
-   <q-page>
-    <div class="q-pt-xl q-mx-xl justify-center text-center">
+   <q-page class="main-wrapper">
+
+    <div class="mini-wrapper">
+      <div class="q-pt-xl q-mx-xl justify-center text-center">
       <q-icon v-if="cur_level!==1" 
       @click="cur_level--;
               refetch();
@@ -35,6 +37,8 @@
         :src="require('../assets/game2/'+item.image)"
         @click.self="Check($event)">
     </div>
+    </div>
+    
   </q-page>
 </template>
 
@@ -87,9 +91,27 @@ export default defineComponent({
 .level-bar{
   display: inline;
   border-radius: 35px;
-}
+  background: #00684F;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  color: white;
+  }
 .card{
   height: 250px;
   width: 250px;
+}
+
+.mini-wrapper {
+
+width: 1000px;
+height: 840px;
+background: white;
+border-radius: 50px;
+}
+
+.main-wrapper {
+display: flex;
+justify-content: center;
+padding-top: 40px;
 }
 </style>

@@ -1,5 +1,8 @@
 <template>
-  <div v-if="!joined" class="parent-container">
+
+  <q-page>
+    
+<div v-if="!joined" class="parent-container">
     <div class="name-container">
       <input type="text" class="user-name" placeholder="Никнейм" v-model="currentUser" />
       <button class="join-button" v-on:click="join">В чат</button>
@@ -18,6 +21,9 @@
       <textarea v-model="text" class="text-message" v-on:keyup.enter="sendMessage"></textarea>
     </div>
   </div>
+
+  </q-page>
+  
 </template>
 
 <script>
