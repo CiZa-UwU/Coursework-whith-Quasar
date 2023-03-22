@@ -41,11 +41,9 @@
   <body>
     <!-- DO NOT touch the following DIV -->
     <div id="q-app"></div>
-
-    <!-- <script src="../src/lib/clerk.js" async crossorigin="anonymous"></script> -->
     <script>
       const publishableKey =
-        "pk_test_c21vb3RoLWh1c2t5LTY2LmNsZXJrLmFjY291bnRzLmRldiQ"; // <- Add Publishable Key here
+        "pk_test_cHJvbXB0LXBvb2RsZS04OS5jbGVyay5hY2NvdW50cy5kZXYk"; // <- Add Publishable Key here
 
       const startClerk = async () => {
         const Clerk = window.Clerk;
@@ -53,33 +51,25 @@
         try {
           // Load Clerk environment and session if available
           await Clerk.load();
-
-          const userButton = document.getElementById("user-button");
-          const authLinks = document.getElementById("auth-links");
-
-          Clerk.addListener(({ user }) => {
-            // Display links conditionally based on user state
-            authLinks.style.display = user ? "none" : "block";
-          });
-
           if (Clerk.user) {
-            // Mount user button component
-            Clerk.mountUserButton(userButton);
-            userButton.style.margin = "auto";
-
             sessionStorage.setItem(
               "token",
               await Clerk.session?.getToken({ template: "hasura" })
             );
-
+            console.log("Добавлен токен");
             setInterval(
               async () =>
                 sessionStorage.setItem(
                   "token",
                   await Clerk.session?.getToken({ template: "hasura" })
                 ),
-              1_000
+              60000
             );
+          }
+          else{
+            sessionStorage.setItem(
+              "token","")
+            console.log("Нет токена");
           }
         } catch (err) {
           console.error("Error starting Clerk: ", err);

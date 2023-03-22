@@ -10,7 +10,8 @@ const routes = [
       { path: '/game-3', component: () => import('pages/Game 3.vue') },
       { path: '/about', component: () => import('pages/About.vue') },
       { path: '/enter', component: () => import('pages/Enter.vue') },
-      { path: '/register', component: () => import('pages/Register.vue') }
+      { path: '/register', component: () => import('pages/Register.vue') },
+      { path: '/chat', component: () => import('pages/Chat.vue') },
     ]
   },
 
