@@ -1,7 +1,5 @@
 /* eslint-disable */
-require("@babel/core").transformSync(code, {
-  plugins: ["@babel/plugin-syntax-top-level-await"],
-});
+
 module.exports = api => {
   return {
     presets: [
