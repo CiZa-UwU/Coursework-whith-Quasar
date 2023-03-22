@@ -1,11 +1,11 @@
 <template>
-  <div v-if="!joined" class="parent-container">
+  <div v-if="!joined" class="container">
     <div class="name-container">
       <input type="text" class="user-name" placeholder="Никнейм" v-model="currentUser" />
       <button class="join-button" v-on:click="join">В чат</button>
     </div>
   </div>
-  <div v-if="joined">
+  <div v-if="joined" class="chat-container">
     <div class="list-container">
       <div v-for="message in messages" :key="message.id">
         <b>
@@ -15,7 +15,8 @@
       </div>
     </div>
     <div class="text-input-container">
-      <textarea v-model="text" class="text-message" v-on:keyup.enter="sendMessage"></textarea>
+      <textarea v-model="text" class="text-message" placeholder="Написать сообщения..."
+        v-on:keyup.enter="sendMessage"></textarea>
     </div>
   </div>
 </template>
@@ -60,7 +61,7 @@ export default {
 </script>
 
 <style scoped>
-.parent-container {
+.container {
   display: flex;
   justify-content: center;
   padding-top: 150px;
@@ -86,16 +87,19 @@ export default {
   font-size: 20px;
 }
 
-.text-input-container {
-  height: 100vh;
+.text-message {
+  width: 99%;
+  height: 30px;
+  border-width: 2px;
+  background-color: rgba(255, 255, 255, 0);
+  margin-left: 8px;
+  margin-right: 8px;
+  margin-top: 8px;
 }
 
-.text-message {
-  width: 100%;
-  position: absolute;
-  bottom: 0px;
-  height: 35px;
-  border-width: 5px;
-  background-color: rgba(1, 122, 116, 0.459);
+.list-container {
+  margin-left: 8px;
+  margin-right: 8px;
+  margin-top: 3px;
 }
 </style>
