@@ -5,7 +5,7 @@
 <div class="q-pt-xl q-mx-xl justify-center text-center">
       <q-icon v-if="cur_level!==1" 
       @click="cur_level--;
-              refetch();
+              refetch(); // заставляет заново отправлять запрос в бд
               res=[];
               levelDone = 0" 
       color="black" 
@@ -44,12 +44,17 @@
       </draggable>
     </div>
     <div class="q-pt-xl justify-center row">
-      <div v-if="loading || loading2">Загрузка</div>
+      <div v-if="loading || loading2">
+        <div class="brain">
+            <img class="brain_img"
+              src="../assets/mozg.gif" alt="">
+        </div>
+      </div>
       <draggable v-else
-        @vnode-mounted="Hello()"
+        @vnode-mounted="Hello()" 
         :list="result.game_content"
         :sort="false" 
-        :group="{name:'a',pull:'clone',put:'false'}" 
+        :group="{name:'a',pull:'clone',put:'false'}"  
         :disabled="levelDone" 
         item-key="result.game_content.id"
         >
@@ -107,7 +112,7 @@ export default defineComponent({
           alert("Неправильный ответ")
         }
       },
-      Hello(){
+      Hello(){ // проверяет прошел ли человек уровень 
         if(window.Clerk.user){
         result2._rawValue.done_levels.forEach(element => {
           if(element.level == cur_level.value && element.game == 1 && element.done == true){
@@ -152,4 +157,8 @@ export default defineComponent({
   padding-top: 40px;
 }
 
+.brain_img {
+  width: 100px;
+  height: 100px;
+}
 </style>

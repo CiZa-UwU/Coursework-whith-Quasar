@@ -26,7 +26,7 @@ export /* async */ function getClientOptions(/* {app, router, ...} */ options) {
     }
   });
 
-  return Object.assign(
+  return Object.assign( // соединяем ссылки хасуры и клерка
     // General options.
     {
       link: authLink.concat(httpLink),

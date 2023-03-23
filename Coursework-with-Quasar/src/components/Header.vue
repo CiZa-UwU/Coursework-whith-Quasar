@@ -4,9 +4,12 @@
       <q-toolbar-title>
         <q-btn  dense icon="menu" aria-label="Menu" @click="toggleLeftDrawer" class="burger-btn" />
         <router-link to="/">
-          <!-- <q-avatar class="avatar round-5 shadow-2 text-center">
-              <img src="../assets/logo.jpg">
-            </q-avatar> -->
+
+          
+            <q-img src="../assets/mainlogo.png" class="mainlogo">
+            </q-img>
+          
+          
         </router-link>
       </q-toolbar-title>
 
@@ -66,5 +69,11 @@ export default defineComponent({
 .burger-btn {
 background: linear-gradient(180deg, #168B6F 3.7%, #00684F 100%);
 border-radius: 8px;
+}
+
+.mainlogo {
+  width: 50px;
+  height: 50px;
+  margin-left: 30px;
 }
 </style>

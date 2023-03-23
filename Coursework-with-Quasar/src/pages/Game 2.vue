@@ -29,7 +29,12 @@
       <img :src="require('../assets/game2/'+cur_level+'level-answer.png')">
     </div>
     <div class="q-pt-xl justify-center row">
-      <div v-if="loading || loading2"></div>
+      <div v-if="loading || loading2">
+        <div class="brain">
+            <img class="brain_img"
+              src="../assets/mozg.gif" alt="">
+        </div>
+      </div>
       <div v-else @vnode-mounted="Hello()">
       <q-img v-for="(item,index) in result.game_content"
         class="q-pa-md card"
@@ -123,5 +128,10 @@ border-radius: 50px;
 display: flex;
 justify-content: center;
 padding-top: 40px;
+}
+
+.brain_img {
+  width: 100px;
+  height: 100px;
 }
 </style>
