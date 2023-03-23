@@ -29,13 +29,15 @@
       <img :src="require('../assets/game2/'+cur_level+'level-answer.png')">
     </div>
     <div class="q-pt-xl justify-center row">
-      <div v-if="loading">Loading...</div>
-      <img v-else v-for="(item,index) in result.game_content"
+      <div v-if="loading || loading2"></div>
+      <div v-else @vnode-mounted="Hello()">
+      <q-img v-for="(item,index) in result.game_content"
         class="q-pa-md card"
         :key="result.game_content[index].id" 
         :class="{'answer' : item.is_answer}" 
         :src="require('../assets/game2/'+item.image)"
-        @click.self="Check($event)">
+        @click.self="Check($event)"/>
+      </div>
     </div>
     </div>
     
@@ -43,10 +45,9 @@
 </template>
 
 <script>
-import { defineComponent,ref,$refs } from 'vue'
-import { useQuery} from '@vue/apollo-composable'
-import gql from 'graphql-tag'
-
+import { defineComponent,ref,computed } from 'vue'
+import { useQuery, useMutation} from '@vue/apollo-composable'
+import { GetLevelData, GetUserData, AddNewUser, AddDoneLevel } from "../apollo/query/queryes.js"
 
 export default defineComponent({
   name: 'Game 2',
@@ -54,19 +55,14 @@ export default defineComponent({
     const cur_level = ref(1)
     const levelDone = ref(0)
     const res = ref([])
-    const { result, error, loading, refetch } = useQuery(gql`query my($levels: Int!) {
-      game_content(where: {levels: {_eq:$levels}}) {
-        game_name
-        id
-        image
-        is_answer
-        levels
-      }
-    }
-    `,{"levels":cur_level})
+    const {result, loading, error, refetch} = useQuery(computed( () => GetLevelData ), {"levels":cur_level})
+    const {result:result2,loading:loading2} = useQuery(computed( () => GetUserData))
+    const { mutate : mutate2 } = useMutation(AddDoneLevel)
     return{
       cur_level,
       result,
+      result2,
+      loading2,
       loading,
       error,
       refetch,
@@ -75,12 +71,26 @@ export default defineComponent({
 
       //Methods
       Check(evn){
-        if(evn.target.classList[2] == 'answer'){
+        if(evn.target.classList[2] == 'answer' && !levelDone.value){
           alert("Правильный ответ!")
+          levelDone.value = 1
+          if(window.Clerk.user){
+            mutate2({"game":2,"level":cur_level.value})
+          }
         }
-        else{
+        else if(!levelDone.value){
           alert("Неправильный ответ")
         }
+      },
+      Hello(){
+        if(window.Clerk.user){
+        result2._rawValue.done_levels.forEach(element => {
+          if(element.level == cur_level.value && element.game == 1 && element.done == true){
+            console.log("Done");
+            levelDone.value = 1;
+          }
+        });
+      }
       }
     }
   }

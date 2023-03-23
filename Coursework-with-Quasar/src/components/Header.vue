@@ -11,10 +11,10 @@
       </q-toolbar-title>
 
       <router-link to="/chat" class="link">
-        <q-btn class="btn" v-if="isLogin()">Чат</q-btn>
+        <q-btn class="btn" id="chat">Чат</q-btn>
       </router-link>
-      <q-btn v-if="isLogin()" class="btn" id="exit-btn" @click="userApi.logout" label="Выйти" />
-      <q-btn v-else class="btn" id="auth-links" @click="userApi.login" label="Войти" />
+      <q-btn  class="btn" id="exitBtn" @click="userApi.logout" label="Выйти" />
+      <q-btn  class="btn" id="authLinks" @click="userApi.login" label="Войти" />
     </q-toolbar>
 
   </q-header>
@@ -38,14 +38,6 @@ export default defineComponent({
       userApi,
       toggleLeftDrawer() {
         leftDrawerOpen.value = !leftDrawerOpen.value
-      },
-      isLogin(){
-        if(window.Clerk.user !== 'null' && typeof window.Clerk.user !== 'undefined'){
-          return true
-          
-        }
-        else
-          return false
       }
     }
   },

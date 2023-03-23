@@ -44,10 +44,10 @@
       </draggable>
     </div>
     <div class="q-pt-xl justify-center row">
-      <div v-if="loading || loading2">Loading...</div>
+      <div v-if="loading || loading2">Загрузка</div>
       <draggable v-else
         @vnode-mounted="Hello()"
-        :list="result.game_content" 
+        :list="result.game_content"
         :sort="false" 
         :group="{name:'a',pull:'clone',put:'false'}" 
         :disabled="levelDone" 
@@ -115,6 +115,7 @@ export default defineComponent({
             levelDone.value = 1;
           }
         });
+
       }
       }
     }
