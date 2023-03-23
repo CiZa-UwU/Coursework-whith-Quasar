@@ -5,7 +5,7 @@
   <div class="q-pt-xl q-mx-xl justify-center text-center">
       <q-icon v-if="cur_level!==1" 
       @click="cur_level--;
-              refetch(); // заставляет заново отправлять запрос в бд
+              refetch();
               res=[];
               " 
       color="black" 
@@ -82,7 +82,7 @@ import { defineComponent,ref,computed } from 'vue'
 import { useQuasar } from 'quasar';
 import { useQuery, useMutation } from '@vue/apollo-composable'
 import draggable from "vuedraggable";
-import { GetLevelData, GetUserData, AddNewUser, AddDoneLevel } from "../apollo/query/queryes.js"
+import { GetLevelData, GetUserData, AddDoneLevel } from "../apollo/query/queryes.js"
 
 export default defineComponent({
   name: 'Game 1',
@@ -130,9 +130,6 @@ export default defineComponent({
         result2._rawValue.done_levels.forEach(element => {
           if(element.level == cur_level.value && element.game == 1 && element.done == true){
             levelDone.value = 1;
-          }
-          else{
-            levelDone.value = 0;
           }
         });
 

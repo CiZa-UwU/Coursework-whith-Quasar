@@ -35,9 +35,9 @@
               src="../assets/mozg.gif" alt="">
         </div>
       </div>
-      <div v-else @vnode-mounted="Hello()">
-      <q-img v-for="(item,index) in result.game_content"
-        class="q-pa-md card"
+      <div v-else @vnode-mounted="CheckLevelDone()">
+      <img v-for="(item,index) in result.game_content"
+        class="q-pa-md"
         :key="result.game_content[index].id" 
         :class="{'answer' : item.is_answer, 'card_level_1-2' : cur_level == 1, 'card_level_3' : cur_level == 3, 'card_level_4' : cur_level == 4}" 
         :src="require('../assets/game2/'+item.image)"
