@@ -44,8 +44,9 @@
       </draggable>
     </div>
     <div class="q-pt-xl justify-center row">
-      <div v-if="loading">Loading...</div>
-      <draggable v-else 
+      <div v-if="loading || loading2">Loading...</div>
+      <draggable v-else
+        @vnode-mounted="Hello()"
         :list="result.game_content" 
         :sort="false" 
         :group="{name:'a',pull:'clone',put:'false'}" 
@@ -67,53 +68,24 @@
 </template>
 
 <script>
-import { defineComponent,ref } from 'vue'
-import { useQuery, useMutation} from '@vue/apollo-composable'
+import { defineComponent,ref,computed } from 'vue'
+import { useQuery, useMutation } from '@vue/apollo-composable'
 import draggable from "vuedraggable";
-import gql from 'graphql-tag'
-
+import { GetLevelData, GetUserData, AddNewUser, AddDoneLevel } from "../apollo/query/queryes.js"
 
 export default defineComponent({
   name: 'Game 1',
   components: {draggable},
   setup () {
     const cur_level = ref(1)
+    const {result, loading, error, refetch} = useQuery(computed( () => GetLevelData ), {"levels":cur_level})
+    const {result:result2,loading:loading2} = useQuery(computed( () => GetUserData))
+    const { mutate : mutate2 } = useMutation(AddDoneLevel)
     const levelDone = ref(0)
     const res = ref([])
-    const ABC = useQuery(gql`query my2($level_1_game_1: Boolean!) {
-       done_levels(where: {level_1_game_1: {_eq:$level_1_game_1}}) {
-         user_id
-         level_1_game_1
-       }
-     }
-     `,{"level_1_game_1":false})
-     const {result,loading,error,refetch} = useQuery(gql`query my($levels: Int!) {
-      game_content(where: {levels: {_eq:$levels}}) {
-        game_name
-        id
-        image
-        is_answer
-        levels
-      }
-    }
-    `,{"levels":cur_level})
-
-    // const {mutate} = useMutation(gql`mutation MyMutation {
-    // insert_done_levels(objects: 
-    // {  
-    //  level_1_game_1: false,
-    //  level_1_game_2: false,
-    //  level_2_game_1: false,
-    //  level_2_game_2: false,
-    //  level_3_game_2: false,
-    //  level_4_game_2: false}) 
-    //  {
-    //   affected_rows  
-    //  }
-    // }`)
-    console.log(ABC.result);
-    // mutate()
     return{
+      result2,
+      loading2,
       cur_level,
       result,
       loading,
@@ -126,13 +98,25 @@ export default defineComponent({
         if(env.item.__draggable_context.element.is_answer && res.value.length == 1){
           alert("Правильный ответ")
           levelDone.value = 1;
-          return
+          if(window.Clerk.user){
+            mutate2({"game":1,"level":cur_level.value})
+          }
         }
         else{
           res.value = []
           alert("Неправильный ответ")
         }
       },
+      Hello(){
+        if(window.Clerk.user){
+        result2._rawValue.done_levels.forEach(element => {
+          if(element.level == cur_level.value && element.game == 1 && element.done == true){
+            console.log("Done");
+            levelDone.value = 1;
+          }
+        });
+      }
+      }
     }
   }
 })
