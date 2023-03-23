@@ -65,6 +65,7 @@ export default {
   display: flex;
   justify-content: center;
   padding-top: 150px;
+  min-height: 580px;
 }
 
 .name-container {
@@ -91,15 +92,22 @@ export default {
   width: 99%;
   height: 30px;
   border-width: 2px;
-  background-color: rgba(255, 255, 255, 0);
+  background-color: rgba(255, 255, 255, 0.164);
   margin-left: 8px;
   margin-right: 8px;
   margin-top: 8px;
+  font-size: medium;
 }
 
 .list-container {
-  margin-left: 8px;
-  margin-right: 8px;
-  margin-top: 3px;
+  margin-left: 10px;
+  margin-right: 10px;
+  font-size: large;
+}
+
+.chat-container {
+  min-height: 600px;
+  background-color: rgba(255, 255, 255, 0.699);
 }
 </style>
+
