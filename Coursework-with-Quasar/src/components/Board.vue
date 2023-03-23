@@ -1,6 +1,6 @@
 <template>
 
-    <q-page>
+    <q-page style="min-height: 500px;">
         <div class="board-wrapper"> 
     <div class="board">
         <BoardItem :game-status="gameStatus"  v-for="field in fields" :field="field" :key="'item-' + field.id"
@@ -95,4 +95,7 @@ export default {
 
 .fail
     color: #ff000055
+
+// .q-page
+//     min-height: 8213px
 </style>
