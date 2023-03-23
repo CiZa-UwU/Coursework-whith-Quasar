@@ -2,7 +2,7 @@
   <q-header elevated class="header q-pa-sm q-mb-xl">
     <q-toolbar class="justify-start">
       <q-toolbar-title>
-        <q-btn flat dense round icon="menu" aria-label="Menu" @click="toggleLeftDrawer" />
+        <q-btn  dense icon="menu" aria-label="Menu" @click="toggleLeftDrawer" class="burger-btn" />
         <router-link to="/">
           <!-- <q-avatar class="avatar round-5 shadow-2 text-center">
               <img src="../assets/logo.jpg">
@@ -54,12 +54,12 @@ export default defineComponent({
 
 <style scoped>
 .header {
-  background-color: black;
+  background-color: #079270;
   height: 75px;
 }
 
 .btn {
-  background-color: #282d338e;
+  background-color: linear-gradient(180deg, #168B6F 3.7%, #00684F 100%);
   border: 1px;
   cursor: pointer;
   font-size: 10px;
@@ -68,7 +68,11 @@ export default defineComponent({
   text-align: center;
   font-weight: 700;
   color: white;
-  box-shadow: 0 0 10px 0 #4abcdb inset, 0 0 10px 4px #43b4d3;
   margin-left: 30px;
+}
+
+.burger-btn {
+background: linear-gradient(180deg, #168B6F 3.7%, #00684F 100%);
+border-radius: 8px;
 }
 </style>

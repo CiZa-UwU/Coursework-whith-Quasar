@@ -1,5 +1,7 @@
 <template>
-<div class="board-wrapper"> 
+
+    <q-page>
+        <div class="board-wrapper"> 
     <div class="board">
         <BoardItem :game-status="gameStatus"  v-for="field in fields" :field="field" :key="'item-' + field.id"
         @selectField="selectField($event)"
@@ -16,6 +18,8 @@
     <button class="btn" @click="start" :disabled="!canStartGame">Старт</button>
     
 </div>
+    </q-page>
+
     
 </template>
 
@@ -65,7 +69,7 @@ export default {
 <style scoped lang="sass">
 
 .board-wrapper
-    margin-bottom: 100px
+    
 
 .board
     width: 300px
