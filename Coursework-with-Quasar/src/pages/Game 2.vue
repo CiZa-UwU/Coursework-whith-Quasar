@@ -1,7 +1,6 @@
 <template>
    <q-page class="main-wrapper">
-
-    <div class="mini-wrapper">
+    <div class="mini-wrapper q-mb-lg" :class="{'done' : levelDone}">
       <div class="q-pt-xl q-mx-xl justify-center text-center">
       <q-icon v-if="cur_level!==1" 
       @click="cur_level--;
@@ -25,16 +24,17 @@
         size="50px"
       />
     </div>
-    <div class="q-pt-xl justify-center row">
+    <h6 v-if="levelDone" class="row justify-center">Вы уже прошли этот уровень, поздравляем!!!</h6>
+    <div class="justify-center row">
       <img :src="require('../assets/game2/'+cur_level+'level-answer.png')">
     </div>
-    <div class="q-pt-xl justify-center row">
+    <div class="q-pt-lg q-pb-xl justify-center row">
       <div v-if="loading || loading2"></div>
-      <div v-else @vnode-mounted="Hello()">
-      <q-img v-for="(item,index) in result.game_content"
-        class="q-pa-md card"
+      <div v-else @vnode-mounted="CheckLevelDone()">
+      <img v-for="(item,index) in result.game_content"
+        class="q-pa-md"
         :key="result.game_content[index].id" 
-        :class="{'answer' : item.is_answer}" 
+        :class="{'answer' : item.is_answer, 'card_level_1-2' : cur_level == 1, 'card_level_3' : cur_level == 3, 'card_level_4' : cur_level == 4}" 
         :src="require('../assets/game2/'+item.image)"
         @click.self="Check($event)"/>
       </div>
@@ -46,8 +46,9 @@
 
 <script>
 import { defineComponent,ref,computed } from 'vue'
+import { useQuasar } from 'quasar';
 import { useQuery, useMutation} from '@vue/apollo-composable'
-import { GetLevelData, GetUserData, AddNewUser, AddDoneLevel } from "../apollo/query/queryes.js"
+import { GetLevelData, GetUserData, AddDoneLevel } from "../apollo/query/queryes.js"
 
 export default defineComponent({
   name: 'Game 2',
@@ -58,6 +59,7 @@ export default defineComponent({
     const {result, loading, error, refetch} = useQuery(computed( () => GetLevelData ), {"levels":cur_level})
     const {result:result2,loading:loading2} = useQuery(computed( () => GetUserData))
     const { mutate : mutate2 } = useMutation(AddDoneLevel)
+    const $q = useQuasar()
     return{
       cur_level,
       result,
@@ -71,22 +73,28 @@ export default defineComponent({
 
       //Methods
       Check(evn){
-        if(evn.target.classList[2] == 'answer' && !levelDone.value){
-          alert("Правильный ответ!")
+        console.log(evn.target.classList);
+        if(evn.target.classList[1] == 'answer' && !levelDone.value){
+          $q.notify({
+            message: 'Правильный ответ!',
+            color: 'green'
+          })
           levelDone.value = 1
           if(window.Clerk.user){
             mutate2({"game":2,"level":cur_level.value})
           }
         }
         else if(!levelDone.value){
-          alert("Неправильный ответ")
+          $q.notify({
+            message: 'Попробуй еще раз!',
+            color: 'red'
+          })
         }
       },
-      Hello(){
+      CheckLevelDone(){
         if(window.Clerk.user){
         result2._rawValue.done_levels.forEach(element => {
-          if(element.level == cur_level.value && element.game == 1 && element.done == true){
-            console.log("Done");
+          if(element.level == cur_level.value && element.game == 2 && element.done == true){
             levelDone.value = 1;
           }
         });
@@ -123,5 +131,20 @@ border-radius: 50px;
 display: flex;
 justify-content: center;
 padding-top: 40px;
+}
+
+.card_level_1-2{
+  width: 250px;
+  height: 250px;
+}
+.card_level_3{
+  width: 200px;
+  height: 150px;
+}
+.card_level_4{
+  width: 200px;
+}
+.done{
+  background-color: lightgreen;
 }
 </style>
