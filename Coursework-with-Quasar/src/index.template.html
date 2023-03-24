@@ -50,9 +50,9 @@
 
         try {
           // Load Clerk environment and session if available
-          await Clerk.load();
+          await Clerk.load(); //Ждем загрузку
           if (Clerk.user) {
-            sessionStorage.setItem(
+            sessionStorage.setItem( //Ставим токен
               "token",
               await Clerk.session?.getToken({ template: "hasura" })
             );
@@ -62,13 +62,13 @@
             authLinks.style.display = user ? "none" : "block";
             exitBtn.style.display = user ? "block" : "none"
             });
-            setInterval(
+            setInterval( //Обновляем токен
               async () =>
                 sessionStorage.setItem(
                   "token",
-                  await Clerk.session?.getToken({ template: "hasura" })
+                  await Clerk.session?.getToken({ template: "hasura" }) //Токен из Клерка
                 ),
-              60000
+              60000 //Раз в минуту
             );
           }
           else{

@@ -1,11 +1,12 @@
 <template>
   <q-page class="main-wrapper">
-
+  <!-- Игры работают по принципу получения пути к картинке из бд и установкой класса answer на правильную -->
+  <!-- Проверка работает по принципу получения данных пользователя и поиска в них пройдена ли игра -->
   <div class="mini-wrapper q-mb-lg q-pb-lg" :class="{'done' : levelDone}">
   <div class="q-pt-xl q-mx-xl justify-center text-center">
       <q-icon v-if="cur_level!==1" 
       @click="cur_level--;
-              refetch();
+              refetch(); //Отправляет запрос заново с новыми данными
               res=[];
               " 
       color="black" 
@@ -17,7 +18,7 @@
       </h5>
       <q-icon v-if="cur_level!==2" 
         @click ="cur_level++;
-                refetch();
+                refetch(); //Отправляет запрос заново с новыми данными
                 res=[];
                 " 
         color="black" 
@@ -30,10 +31,13 @@
       <img :src="require('../assets/game1/'+cur_level+'level-answer.png')"
            :class="{'card_level_1' : cur_level == 1, 'card_level_2' : cur_level == 2}"
            >
-      <draggable 
+        <!-- Между групп с одинаковым названием можно перетаскивать. 
+      pull - действие при перетаскивании put - возможность претащить list - массив с данными 
+      template - выводит в цикле картинки из слота item @add - событие при добавлении -->
+      <draggable
         :list="res" 
         group = "a" 
-        @add="Check" 
+        @add="Check"
         class="card"
         :class="{'card_level_1' : cur_level == 1, 'card_level_2' : cur_level == 2}"
         item-key="res.image">
@@ -55,6 +59,7 @@
               src="../assets/mozg.gif" alt="">
         </div>
       </div>
+      <!-- @vnode-mounted сработает когда появится элемент  -->
       <draggable v-else
         @vnode-mounted="CheckLevel()"
         :list="result.game_content"
@@ -88,8 +93,8 @@ export default defineComponent({
   name: 'Game 1',
   components: {draggable},
   setup () {
-    const $q = useQuasar()
-    const cur_level = ref(1)
+    const $q = useQuasar() // Для notify
+    const cur_level = ref(1) // Текущий уровень
     const {result, loading, error, refetch} = useQuery(computed( () => GetLevelData ), {"levels":cur_level})
     const {result:result2,loading:loading2} = useQuery(computed( () => GetUserData))
     const { mutate : mutate2 } = useMutation(AddDoneLevel)
@@ -106,7 +111,7 @@ export default defineComponent({
       res,
       levelDone,
       //Methods
-      Check(env){
+      Check(env){ //Будет вызываться когда добавляет новый элемент
         if(env.item.__draggable_context.element.is_answer && res.value.length == 1){
           $q.notify({
             message: 'Правильный ответ!',
@@ -125,7 +130,7 @@ export default defineComponent({
           })
         }
       },
-      CheckLevel(){
+      CheckLevel(){ //Будет вызываться когда все данные уже получены
         if(window.Clerk.user){
         result2._rawValue.done_levels.forEach(element => {
           if(element.level == cur_level.value && element.game == 1 && element.done == true){

@@ -1,5 +1,7 @@
 <template>
    <q-page class="main-wrapper">
+    <!-- Игры работают по принципу получения пути к картинке из бд и установкой класса answer на правильную -->
+    <!-- Проверка работает по принципу получения данных пользователя и поиска в них пройдена ли игра -->
     <div class="mini-wrapper q-mb-lg" :class="{'done' : levelDone}">
       <div class="q-pt-xl q-mx-xl justify-center text-center">
       <q-icon v-if="cur_level!==1" 
@@ -36,6 +38,8 @@
         </div>
       </div>
       <div v-else @vnode-mounted="CheckLevelDone()">
+      <!-- .self нужно для передачи данных объекта на который кликнули
+      используется  тег img потому что на q-img не работает @click.self -->
       <img v-for="(item,index) in result.game_content"
         class="q-pa-md"
         :key="result.game_content[index].id" 
@@ -64,7 +68,7 @@ export default defineComponent({
     const {result, loading, error, refetch} = useQuery(computed( () => GetLevelData ), {"levels":cur_level})
     const {result:result2,loading:loading2} = useQuery(computed( () => GetUserData))
     const { mutate : mutate2 } = useMutation(AddDoneLevel)
-    const $q = useQuasar()
+    const $q = useQuasar() //Для notify
     return{
       cur_level,
       result,
@@ -79,7 +83,7 @@ export default defineComponent({
       //Methods
       Check(evn){
         console.log(evn.target.classList);
-        if(evn.target.classList[1] == 'answer' && !levelDone.value){
+        if(evn.target.classList[1] == 'answer' && !levelDone.value){ //Проверяем класс
           $q.notify({
             message: 'Правильный ответ!',
             color: 'green'
@@ -96,7 +100,7 @@ export default defineComponent({
           })
         }
       },
-      CheckLevelDone(){
+      CheckLevelDone(){ //Вызывается когда данные получены
         if(window.Clerk.user){
         result2._rawValue.done_levels.forEach(element => {
           if(element.level == cur_level.value && element.game == 2 && element.done == true){

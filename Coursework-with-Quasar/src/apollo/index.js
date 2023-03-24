@@ -3,24 +3,22 @@ import { setContext } from "@apollo/client/link/context";
 
 export /* async */ function getClientOptions(/* {app, router, ...} */ options) {
   const httpLink = createHttpLink({
-    uri: "https://endless-wasp-39.hasura.app/v1/graphql",
+    uri: "https://endless-wasp-39.hasura.app/v1/graphql", //Наша БД
   });
   const authLink = setContext((_, { headers }) => {
     const token = sessionStorage.getItem("token");
-    if(token === ""){
-      console.log("Отправлены пустые заголовки");
+    if(token === ""){ 
       return {
         headers: {
-          ...headers
+          ...headers //Пустые заголовки
         },
       }
     }
     else {
-      console.log("Отправлены заголовки");
       return {
         headers: {
           ...headers,
-          Authorization: token ? `Bearer ${token}` : "",
+          Authorization: token ? `Bearer ${token}` : "", //Заголовки с авторизацией
         },
       };
     }
