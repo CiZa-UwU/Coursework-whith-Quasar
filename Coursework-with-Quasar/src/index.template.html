@@ -62,7 +62,6 @@
             authLinks.style.display = user ? "none" : "block";
             exitBtn.style.display = user ? "block" : "none"
             });
-            console.log("Добавлен токен");
             setInterval(
               async () =>
                 sessionStorage.setItem(
@@ -75,7 +74,6 @@
           else{
             sessionStorage.setItem(
               "token","")
-            console.log("Нет токена");
           }
         } catch (err) {
           console.error("Error starting Clerk: ", err);
