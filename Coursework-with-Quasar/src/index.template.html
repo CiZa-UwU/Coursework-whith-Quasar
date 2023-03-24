@@ -3,20 +3,95 @@
   <head>
     <title><%= productName %></title>
 
-    <meta charset="utf-8">
-    <meta name="description" content="<%= productDescription %>">
-    <meta name="format-detection" content="telephone=no">
-    <meta name="msapplication-tap-highlight" content="no">
-    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width<% if (ctx.mode.cordova || ctx.mode.capacitor) { %>, viewport-fit=cover<% } %>">
+    <meta charset="utf-8" />
+    <meta name="description" content="<%= productDescription %>" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta
+      name="viewport"
+      content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width<% if (ctx.mode.cordova || ctx.mode.capacitor) { %>, viewport-fit=cover<% } %>"
+    />
 
-    <link rel="icon" type="image/png" sizes="128x128" href="icons/favicon-128x128.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="icons/favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png">
-    <link rel="icon" type="image/ico" href="favicon.ico">
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="128x128"
+      href="icons/favicon-128x128.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="96x96"
+      href="icons/favicon-96x96.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="icons/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="icons/favicon-16x16.png"
+    />
+    <link rel="icon" type="image/ico" href="favicon.ico" />
   </head>
   <body>
     <!-- DO NOT touch the following DIV -->
     <div id="q-app"></div>
+    <script>
+      const publishableKey =
+        "pk_test_cHJvbXB0LXBvb2RsZS04OS5jbGVyay5hY2NvdW50cy5kZXYk"; // <- Add Publishable Key here
+
+      const startClerk = async () => {
+        const Clerk = window.Clerk;
+
+        try {
+          // Load Clerk environment and session if available
+          await Clerk.load();
+          if (Clerk.user) {
+            sessionStorage.setItem(
+              "token",
+              await Clerk.session?.getToken({ template: "hasura" })
+            );
+            Clerk.addListener(({ user }) => {
+            // Display links conditionally based on user state
+            chat.style.display = user ? "block" : "none"
+            authLinks.style.display = user ? "none" : "block";
+            exitBtn.style.display = user ? "block" : "none"
+            });
+            setInterval(
+              async () =>
+                sessionStorage.setItem(
+                  "token",
+                  await Clerk.session?.getToken({ template: "hasura" })
+                ),
+              60000
+            );
+          }
+          else{
+            sessionStorage.setItem(
+              "token","")
+          }
+        } catch (err) {
+          console.error("Error starting Clerk: ", err);
+        }
+      };
+
+      (() => {
+        const script = document.createElement("script");
+        script.setAttribute("data-clerk-publishable-key", publishableKey);
+        script.async = true;
+        script.src = `https://cdn.jsdelivr.net/npm/@clerk/clerk-js@latest/dist/clerk.browser.js`;
+        script.crossOrigin = "anonymous";
+        script.addEventListener("load", startClerk);
+        script.addEventListener("error", () => {
+          document.getElementById("no-frontend-api-warning").hidden = false;
+        });
+        document.body.appendChild(script);
+      })();
+    </script>
   </body>
 </html>
