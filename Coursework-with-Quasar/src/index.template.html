@@ -56,7 +56,7 @@
               "token",
               await Clerk.session?.getToken({ template: "hasura" })
             );
-            Clerk.addListener(({ user }) => {
+            Clerk.addListener(({ user }) => { //Если есть пользователь
             // Display links conditionally based on user state
             chat.style.display = user ? "block" : "none"
             authLinks.style.display = user ? "none" : "block";
